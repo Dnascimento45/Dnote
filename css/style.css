@@ -1,0 +1,85 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    color: #fff;
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+}
+
+/* Tela Dashboard */
+.dashboard-capas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    width: 100%;
+    height: 100%;
+}
+ /*CAPAS*/
+.capa-card {
+    position:relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid #222;
+    transition: filter 0.3s, transform 0.3s;
+    overflow: hidden;
+    min-height: 200px;
+}
+
+.capa-card:hover {
+    filter: brightness(1.3);
+    trasnform:scale(1.02);
+}
+
+.capa-label {
+    text-align: center;
+}
+
+.capa-label h2 {
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+.capa-label .formula {
+    margin-top: 0.3rem;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #aaa;
+    opacity: 0.8;
+}
+/*overlay escuro*/
+.capa-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);  /* Fundo semi-transparente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.capa-card:hover .capa-overlay {
+    background: rgba(0, 0, 0, 0.3);  /* Mais claro ao passar o mouse */
+}
+
+/* Texto sobre a imagem */
+.capa-label {
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    pointer-events: none;        /* Impede que o texto atrapalhe o clique */
+}
