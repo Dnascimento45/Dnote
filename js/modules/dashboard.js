@@ -1,5 +1,6 @@
-import { materias } from './dados.js';
-import { expandirCapa } from './animacoes.js';
+import { materias } from '../dados.js';
+import { carregarView } from '../carregarView.js';
+import { renderizarLivro } from './livro.js';
 
 export function renderizarDashboard() {
     const container = document.getElementById('dashboard');
@@ -8,29 +9,20 @@ export function renderizarDashboard() {
     container.innerHTML = '';
 
     materias.forEach(materia => {
+        console.log(materia)
         const card = document.createElement('div');
         card.className = 'capa-card';
-        //adiciona estilo inline para imagem
         card.style.backgroundImage = `url(${materia.imagem})`;
-        card.style.backgroundSize = 'cover';
-        card.style.backgroundPosition = 'center';
         card.dataset.id = materia.id;
-        
 
-        card.innerHTML = `
-            <div class="capa-overlay">
-            <div class="capa-label"
-                <h2>${materia.titulo}</h2>
-                <div class="formula">${materia.formula}</div>
-            </div>
-            </div>
-        `;
-
-        // Quando clicar no card, vamos abrir a Tela 2 (matérias)
-        // Por enquanto, só um alert para testar
+        // ADICIONADO O EVENTO DE CLIQUE
         card.addEventListener('click', () => {
-            alert(`Clicou em ${materia.titulo}`);
-            // Depois vamos chamar expandirCapa e carregar a Tela 2
+            // Esconde o dashboard
+            document.getElementById('dashboard').style.display = 'none';
+            // Carrega a tela do livro usando o fetch (mas se falhar, o dashboard não some)
+            carregarView('livro', () => {
+                renderizarLivro(materia.id);
+            });
         });
 
         container.appendChild(card);

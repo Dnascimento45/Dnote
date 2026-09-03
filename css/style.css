@@ -1,85 +1,37 @@
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    color: #fff;
+    width: 100%; height: 100%;
+    background-color: #000; color: #fff;
     font-family: Georgia, 'Times New Roman', serif;
+    overflow-x: hidden;
 }
 
-#app {
-    width: 100%;
-    height: 100%;
-}
+#app { width: 100%; height: 100%; }
 
-/* Tela Dashboard */
+/* Dashboard em coluna (uma atrás da outra) */
 .dashboard-capas {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    width: 100%;
-    height: 100%;
+    display: flex; flex-direction: column;
+    width: 100%; height: 100%;
 }
- /*CAPAS*/
+
+/* Cards em tela cheia */
 .capa-card {
-    position:relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: 1px solid #222;
-    transition: filter 0.3s, transform 0.3s;
-    overflow: hidden;
-    min-height: 200px;
+    position: relative; width: 100%; height: 100vh;
+    cursor: pointer; background-size: cover; background-position: center;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    z-index: 1;
 }
 
 .capa-card:hover {
-    filter: brightness(1.3);
-    trasnform:scale(1.02);
+    transform: scale(1.1);
+    z-index: 10;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
 }
 
-.capa-label {
-    text-align: center;
-}
-
-.capa-label h2 {
-    font-size: 2.5rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-}
-
-.capa-label .formula {
-    margin-top: 0.3rem;
-    font-size: 1.2rem;
-    font-style: italic;
-    color: #aaa;
-    opacity: 0.8;
-}
-/*overlay escuro*/
-.capa-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);  /* Fundo semi-transparente */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s;
-}
-
-.capa-card:hover .capa-overlay {
-    background: rgba(0, 0, 0, 0.3);  /* Mais claro ao passar o mouse */
-}
-
-/* Texto sobre a imagem */
-.capa-label {
-    text-align: center;
-    color: #fff;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-    pointer-events: none;        /* Impede que o texto atrapalhe o clique */
-}
+/* Tela do Livro */
+.view-conteudo { width: 100%; height: 100%; padding: 2rem; }
+.livro-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 1rem; }
+.btn-voltar { background: #333; color: #fff; border: 1px solid #555; padding: 0.5rem 1rem; cursor: pointer; border-radius: 4px; }
+.btn-voltar:hover { background: #555; }
+.livro-conteudo { flex: 1; background: rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 8px; border: 1px solid #222; }

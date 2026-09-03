@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8" />
@@ -6,13 +7,15 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- O app vai ser preenchido pelo JavaScript -->
-    <div id="app"></div>
+    <div id="app">
+        <!-- Estrutura inicial fixa no HTML (NÃO depende de fetch) -->
+        <section id="dashboard" class="dashboard-capas"></section>
+        
+        <!-- Estrutura da tela do Livro (vamos adicionar depois, mas já deixa o lugar) -->
+        <section id="livro" class="view-conteudo" style="display: none;"></section>
+    </div>
 
-    <!-- Carrega o JavaScript principal como módulo -->
-    <script type="module
-    " src="js/main.js">
-    </script>
-
+    <!-- Corrigido: importando o módulo -->
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
