@@ -11,14 +11,24 @@ html, body {
 
 /* Dashboard em coluna (uma atrás da outra) */
 .dashboard-capas {
-    display: flex; flex-direction: column;
+    display: grid; flex-direction:grid;
     width: 100%; height: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap:30px;
+    padding: 40px;
+    /* Centraliza o conteúdo na tela */
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 /* Cards em tela cheia */
 .capa-card {
-    position: relative; width: 100%; height: 100vh;
-    cursor: pointer; background-size: cover; background-position: center;
+    position: relative; width: 100%; height: 40vh;
+    cursor: pointer;
+     background-size: contain;
+     background-position: center;
+     background-repeat: no-repeat;
     transition: transform 0.5s ease, box-shadow 0.5s ease;
     z-index: 1;
 }

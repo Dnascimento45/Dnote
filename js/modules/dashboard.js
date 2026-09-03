@@ -1,5 +1,4 @@
 import { materias } from '../dados.js';
-import { carregarView } from '../carregarView.js';
 import { renderizarLivro } from './livro.js';
 
 export function renderizarDashboard() {
@@ -19,6 +18,8 @@ export function renderizarDashboard() {
         card.addEventListener('click', () => {
             // Esconde o dashboard
             document.getElementById('dashboard').style.display = 'none';
+            
+            document.getElementById('livro').style.display='block';
             // Carrega a tela do livro usando o fetch (mas se falhar, o dashboard não some)
             carregarView('livro', () => {
                 renderizarLivro(materia.id);

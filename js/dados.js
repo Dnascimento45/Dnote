@@ -23,11 +23,4 @@ export const materias = [
         formula: 'English',
         imagem: 'assets/ingles.png'
     },
-
-    {
-        id: 'bucetao',
-        titulo: 'Ingbucetaolês',
-        formula: 'bucetao',
-        imagem: 'assets/ingles.png'
-    }
 ]; 

@@ -3,7 +3,7 @@ export function voltarDashboard() {
     const livro = document.getElementById('livro');
 
     if (dashboard && livro) {
-        dashboard.style.display = 'flex';
+        dashboard.style.display = 'grid';
         livro.style.display = 'none';
     }
 }
