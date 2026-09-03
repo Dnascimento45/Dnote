@@ -33,7 +33,7 @@ html, body {
      background-size: contain;
      background-position: center;
      background-repeat: no-repeat;
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    transition: box-shadow 0.5s ease;
     z-index: 1;
 }
 
@@ -97,3 +97,30 @@ html, body {
     /* Ele já tem width e height 100%, mas com o flex do pai, precisamos que ele cresça */
     flex: 1; 
 }
+
+
+/* Overlay escuro (começa invisível) */
+.overlay-transicao {
+    position: fixed;
+    inset: 0;
+    background-color: #000;
+    opacity: 0;
+    pointer-events: none; /* Não bloqueia cliques quando invisível */
+    transition: opacity 2s ease;
+    z-index: 1000;
+}
+.overlay-transicao.ativa {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Classe que faz o card ir para o centro e dar zoom */
+.capa-card.expandindo {
+    position: fixed;           /* Sai do fluxo do grid */
+    z-index: 999;              /* Fica acima das outras */
+    transition: transform 3s cubic-bezier(0.25, 1, 0.5, 1); /* Curva de desaceleração suave */ /* Ajuste o tempo conforme preferir */
+    pointer-events: none;      /* Evita cliques durante a animação */
+    top: 50%;
+    left: 50%;
+}
+/*oi deep*/
