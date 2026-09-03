@@ -13,8 +13,14 @@ export function renderizarLivro(idMateria) {
             <h1>${materia.titulo}</h1>
         </div>
         <div class="livro-conteudo">
-            <h2>Capítulo 1</h2>
-            <p>Conteúdo da matéria aqui.</p>
+           <h2>Escolha um conteúdo:</h2>
+        <div class="lista-conteudos">
+            ${materia.conteudos.map(conteudo => `
+                <button class="btn-conteudo" data-conteudo="${conteudo}">
+                    ${conteudo}
+                </button>
+            `).join('')}
+             </div>
         </div>
     `;
 
