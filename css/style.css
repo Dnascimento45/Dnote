@@ -2,20 +2,24 @@
 
 html, body {
     width: 100%; height: 100%;
-    background-color: #000; color: #fff;
+    background-color: #000000; color: #fff;
     font-family: Georgia, 'Times New Roman', serif;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
-#app { width: 100%; height: 100%; }
+#app { width: 100%;
+     height: 100%; 
+    display: flex;
+    flex-direction: column;}
 
 /* Dashboard em coluna (uma atrás da outra) */
 .dashboard-capas {
-    display: grid; flex-direction:grid;
+    display: grid;
     width: 100%; height: 100%;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap:30px;
+    gap:200px;
+    row-gap: 10px;
     padding: 40px;
     /* Centraliza o conteúdo na tela */
     max-width: 1400px;
@@ -40,8 +44,56 @@ html, body {
 }
 
 /* Tela do Livro */
-.view-conteudo { width: 100%; height: 100%; padding: 2rem; }
-.livro-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 1rem; }
-.btn-voltar { background: #333; color: #fff; border: 1px solid #555; padding: 0.5rem 1rem; cursor: pointer; border-radius: 4px; }
+.view-conteudo { width: 100%; 
+    height: 100%;
+     padding: 2rem; }
+
+.livro-header { display: flex;
+     align-items: center; 
+     gap: 1rem; 
+     margin-bottom: 2rem;
+      border-bottom: 1px solid #333;
+       padding-bottom: 1rem; }
+
+.btn-voltar { background: #333;
+     color: #fff;
+      border: 1px solid #555; 
+      padding: 0.5rem 1rem;
+       cursor: pointer;
+        border-radius: 4px; }
+
 .btn-voltar:hover { background: #555; }
-.livro-conteudo { flex: 1; background: rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 8px; border: 1px solid #222; }
+
+.livro-conteudo { flex: 1;
+     background: rgba(255, 255, 255, 0.05); 
+     padding: 2rem; 
+     border-radius: 8px;
+      border: 1px solid #222; }
+
+      /* Header do Site */
+.site-header {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    
+    background-color: #000000;
+}
+
+
+    .site-logo {
+        position: relative;
+        top: 40px;            /* Distância da borda superior */
+        left: 50%;            /* Centraliza horizontalmente */
+        transform: translateX(-50%); /* Ajuste fino para centralizar perfeitamente */
+        max-width: 180px;     /* Tamanho máximo da logo */
+        height: auto;
+     /*   z-index: 100;         /* Garante que fique ACIMA de tudo */
+        pointer-events: none; /* Permite clicar nas capas mesmo se a logo estiver por cima */
+    }
+
+
+/* Ajuste do Dashboard para não ficar espremido pelo header */
+.dashboard-capas {
+    /* Ele já tem width e height 100%, mas com o flex do pai, precisamos que ele cresça */
+    flex: 1; 
+}
