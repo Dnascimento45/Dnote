@@ -12,12 +12,16 @@ export function renderizarLivro(idMateria) {
             <button id="btn-voltar" class="btn-voltar">← Voltar</button>
             <h1>${materia.titulo}</h1>
         </div>
-        <div class="livro-conteudo">
-           <h2>Escolha um conteúdo:</h2>
-        <div class="lista-conteudos">
-            ${materia.conteudos.map(conteudo => `
+       
+           
+        <div class="lista-conteudos itens-${materia.conteudos.length}">
+
+
+            ${materia.conteudos.map(conteudo =>`
+
                 <button class="btn-conteudo" data-conteudo="${conteudo}">
                     ${conteudo}
+
                 </button>
             `).join('')}
              </div>

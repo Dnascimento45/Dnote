@@ -60,9 +60,15 @@ export function renderizarDashboard() {
                 card.classList.remove('expandindo');
                 card.style.transform = '';
                 if (overlay) overlay.classList.remove('ativa');
+                // Mostrar o botão voltar no header
+const btnVoltarHeader = document.getElementById('btn-voltar-header');
+if (btnVoltarHeader) {
+    btnVoltarHeader.style.display = 'block';
+    btnVoltarHeader.addEventListener('click', voltarDashboard);
+}
         
                 renderizarLivro(materia.id);
-            }, 3000);
+            }, 2000);
         });
         container.appendChild(card);
     });

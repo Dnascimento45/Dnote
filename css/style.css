@@ -48,27 +48,30 @@ html, body {
     height: 100%;
      padding: 2rem; }
 
+/* Removemos a linha divisória do header */
 .livro-header { display: flex;
      align-items: center; 
      gap: 1rem; 
      margin-bottom: 2rem;
-      border-bottom: 1px solid #333;
-       padding-bottom: 1rem; }
+     /* border-bottom: 1px solid #333; */ /* Removido */
+     /* padding-bottom: 1rem; */ /* Removido */
+     }
 
-.btn-voltar { background: #333;
-     color: #fff;
-      border: 1px solid #555; 
-      padding: 0.5rem 1rem;
-       cursor: pointer;
-        border-radius: 4px; }
+/* Botão voltar mais discreto, sem borda */
+.btn-voltar {  background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+     }
 
-.btn-voltar:hover { background: #555; }
+.btn-voltar:hover { opacity: 0.8; 
 
-.livro-conteudo { flex: 1;
-     background: rgba(255, 255, 255, 0.05); 
-     padding: 2rem; 
-     border-radius: 8px;
-      border: 1px solid #222; }
+}
+
+/* Removemos o container com borda (livro-conteudo) */
+.livro-conteudo { display: none; } /* Não usamos mais, mas deixa no código para não quebrar */
 
       /* Header do Site */
 .site-header {
@@ -78,7 +81,14 @@ html, body {
     
     background-color: #000000;
 }
-
+    header{
+        display: flex;
+    align-items: center;
+    justify-content: space-between; /* Logo à esquerda, botão à direita (ou vice-versa) */
+    padding: 1rem 2rem;
+    background-color: #000;
+    z-index: 999; /* Fica acima do conteúdo */
+    }
 
     .site-logo {
         position: relative;
@@ -89,6 +99,7 @@ html, body {
         height: auto;
      /*   z-index: 100;         /* Garante que fique ACIMA de tudo */
         pointer-events: none; /* Permite clicar nas capas mesmo se a logo estiver por cima */
+        margin:0;
     }
 
 
@@ -118,7 +129,7 @@ html, body {
 .capa-card.expandindo {
     position: fixed;           /* Sai do fluxo do grid */
     z-index: 999;              /* Fica acima das outras */
-    transition: transform 3s cubic-bezier(0.25, 1, 0.5, 1); /* Curva de desaceleração suave */ /* Ajuste o tempo conforme preferir */
+    transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1); /* Curva de desaceleração suave */ /* Ajuste o tempo conforme preferir */
     pointer-events: none;      /* Evita cliques durante a animação */
     top: 50%;
     left: 50%;
@@ -126,28 +137,48 @@ html, body {
 /*oi deep*/
 
 /* Lista de conteúdos */
+/* Lista de conteúdos - Grid fixo */
 .lista-conteudos {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
+    display: grid;
+    row-gap: 20px;
+    height: 80%; /* Ocupa a maior parte da tela */
+    align-content: center;
+    justify-content: center;
+    width: 100%;
 }
 
+/* Inglês: 1 coluna, 2 linhas */
+.itens-2 {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+}
+
+/* Matemática e Português: 2x2 */
+.itens-4 {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+/* Física: 3 colunas, 2 linhas */
+.itens-6 {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+/* Estilo dos botões */
 .btn-conteudo {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid #333;
+    background: transparent;
+    border: none;
     color: #fff;
-    padding: 15px 20px;
     font-family: inherit;
-    font-size: 1.1rem;
-    text-align: left;
+    font-size: 2rem; /* Fonte grande para ficar visualmente impactante */
+    text-align: center;
     cursor: pointer;
-    border-radius: 6px;
-    transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+    transition: opacity 0.3s, transform 0.2s;
+    opacity: 0.8;
 }
 
 .btn-conteudo:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: #555;
-    transform: translateX(5px);
+    opacity: 1;
+    transform: translateY(-5px);
 }
