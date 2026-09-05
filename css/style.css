@@ -48,14 +48,6 @@ html, body {
     height: 100%;
      padding: 2rem; }
 
-/* Removemos a linha divisória do header */
-.livro-header { display: flex;
-     align-items: center; 
-     gap: 1rem; 
-     margin-bottom: 2rem;
-     /* border-bottom: 1px solid #333; */ /* Removido */
-     /* padding-bottom: 1rem; */ /* Removido */
-     }
 
 /* Botão voltar mais discreto, sem borda */
 .btn-voltar { 
@@ -79,17 +71,8 @@ html, body {
 
 }
 
-/* Removemos o container com borda (livro-conteudo) */
-.livro-conteudo { display: none; } /* Não usamos mais, mas deixa no código para não quebrar */
 
-      /* Header do Site */
-.site-header {
-    width: 100%;
-    padding: 1.5rem 2rem;
-    text-align: center;
-    
-    background-color: #000000;
-}
+ 
     header{
         display: flex;
     align-items: center;
@@ -129,7 +112,7 @@ html, body {
     background-color: #000;
     opacity: 0;
     pointer-events: none; /* Não bloqueia cliques quando invisível */
-    transition: opacity 2s ease;
+    transition: opacity 0.5s ease;
     z-index: 1000;
 }
 .overlay-transicao.ativa {
@@ -141,7 +124,7 @@ html, body {
 .capa-card.expandindo {
     position: fixed;           /* Sai do fluxo do grid */
     z-index: 999;              /* Fica acima das outras */
-    transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1); /* Curva de desaceleração suave */ /* Ajuste o tempo conforme preferir */
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* Curva de desaceleração suave */ /* Ajuste o tempo conforme preferir */
     pointer-events: none;      /* Evita cliques durante a animação */
     top: 50%;
     left: 50%;
@@ -214,4 +197,13 @@ html, body {
     width: 100%;
     height: 100%;
     object-fit: cover;   /* Preenche o círculo sem deformar */
+}
+
+/* Efeito de recuo da dashboard inteira */
+.dashboard-recua {
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 2s ease;
+    transform: scale(0.7);     /* A dashboard encolhe */
+    opacity: 0;                /* A dashboard some */
+    transform-origin: center;  /* O encolhimento parte do centro */
+    pointer-events: none;      /* Evita cliques durante a animação */
 }
