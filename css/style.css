@@ -58,12 +58,21 @@ html, body {
      }
 
 /* Botão voltar mais discreto, sem borda */
-.btn-voltar {  background: transparent;
+.btn-voltar { 
+    
+    position: absolute;
+    left: 1.5rem; /* Ajuste a distância da borda esquerda */
+    top:40px;
+    
+    background: transparent;
     border: none;
     color: #fff;
     font-size: 1rem;
     cursor: pointer;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
+    
+    
+   
      }
 
 .btn-voltar:hover { opacity: 0.8; 
@@ -87,19 +96,22 @@ html, body {
     justify-content: space-between; /* Logo à esquerda, botão à direita (ou vice-versa) */
     padding: 1rem 2rem;
     background-color: #000;
+    position: relative;
     z-index: 999; /* Fica acima do conteúdo */
     }
 
     .site-logo {
-        position: relative;
-        top: 40px;            /* Distância da borda superior */
+        position: absolute;
+           top: 50%;        /* Distância da borda superior */
         left: 50%;            /* Centraliza horizontalmente */
         transform: translateX(-50%); /* Ajuste fino para centralizar perfeitamente */
+      
         max-width: 180px;     /* Tamanho máximo da logo */
         height: auto;
      /*   z-index: 100;         /* Garante que fique ACIMA de tudo */
         pointer-events: none; /* Permite clicar nas capas mesmo se a logo estiver por cima */
-        margin:0;
+       
+        
     }
 
 
@@ -149,8 +161,8 @@ html, body {
 
 /* Inglês: 1 coluna, 2 linhas */
 .itens-2 {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
 }
 
 /* Matemática e Português: 2x2 */
@@ -169,7 +181,7 @@ html, body {
 .btn-conteudo {
     background: transparent;
     border: none;
-    color: #fff;
+    color: #6d0707;
     font-family: inherit;
     font-size: 2rem; /* Fonte grande para ficar visualmente impactante */
     text-align: center;
@@ -181,4 +193,25 @@ html, body {
 .btn-conteudo:hover {
     opacity: 1;
     transform: translateY(-5px);
+}
+
+/* Container do vídeo em formato de quarto de círculo */
+.video-container {
+    position: fixed;
+    bottom: -240px;
+    left: -250px;   /* Move para a esquerda, saindo da tela */
+    width: 500px;    /* Tamanho total do círculo */
+    height: 500px;
+    border-radius: 50%;  /* Transforma em círculo */
+    overflow: hidden;    /* Esconde a parte de fora */
+    z-index: 20;          /* Fica atrás dos botões de conteúdo, mas visível */
+    pointer-events: none; /* Permite clicar através do vídeo se necessário */
+    opacity: 0.8;        /* Levemente transparente para não poluir */
+}
+
+/* O vídeo em si precisa preencher todo o container */
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* Preenche o círculo sem deformar */
 }

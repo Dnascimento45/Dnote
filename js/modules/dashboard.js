@@ -1,5 +1,9 @@
 import { materias } from '../dados.js';
 import { renderizarLivro } from './livro.js';
+import { voltarDashboard } from '../animacoes.js';
+
+// Cria o objeto de áudio UMA única vez (fora do loop)
+const somHover = new Audio('assets/hover.mp3');
 
 export function renderizarDashboard() {
     const container = document.getElementById('dashboard');
@@ -14,7 +18,13 @@ export function renderizarDashboard() {
         card.style.backgroundImage = `url(${materia.imagem})`;
         card.dataset.id = materia.id;
 
+        // Evento de hover (som)
+        card.addEventListener('mouseenter', () => {
+            somHover.currentTime = 0;
+            somHover.play();
+        });
 
+        // Evento de clique (transição)
         card.addEventListener('click', () => {
             // 1. Obter posição
             const rect = card.getBoundingClientRect();
@@ -60,16 +70,18 @@ export function renderizarDashboard() {
                 card.classList.remove('expandindo');
                 card.style.transform = '';
                 if (overlay) overlay.classList.remove('ativa');
+                
                 // Mostrar o botão voltar no header
-const btnVoltarHeader = document.getElementById('btn-voltar-header');
-if (btnVoltarHeader) {
-    btnVoltarHeader.style.display = 'block';
-    btnVoltarHeader.addEventListener('click', voltarDashboard);
-}
+                const btnVoltarHeader = document.getElementById('btn-voltar-header');
+                if (btnVoltarHeader) {
+                    btnVoltarHeader.style.display = 'block';
+                    btnVoltarHeader.addEventListener('click', voltarDashboard);
+                }
         
                 renderizarLivro(materia.id);
             }, 2000);
         });
+
         container.appendChild(card);
     });
 }
