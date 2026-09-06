@@ -1,0 +1,14 @@
+ok, vamos alterar algumas coisas, referente a terceira pagina,
+ temos que mudar a lógica que aparece o nome dentro do caderno,
+ o nome deve ser referente ao conteúdo e não ao livro, e deve ser exibido o título não o id.
+  
+
+  O header da pagina 2 está ficando acima do header do caderno. Devem ser ocultos.
+
+  Os botões estão disfuncionais
+
+  O botão de header será feito com svg
+
+  os botões devem ser vitrificados 
+
+  

@@ -2,7 +2,7 @@ import { materias } from '../dados.js';
 import { renderizarLivro } from './livro.js';
 import { voltarDashboard } from '../animacoes.js';
 
-// Áudio de hover (continua igual)
+// Áudio de hover
 const somHover = new Audio('assets/hover.mp3');
 
 export function renderizarDashboard() {
@@ -17,22 +17,19 @@ export function renderizarDashboard() {
         card.style.backgroundImage = `url(${materia.imagem})`;
         card.dataset.id = materia.id;
 
-        // Som de hover
+        // Correção do erro de áudio (evita quebrar a interação)
         card.addEventListener('mouseenter', () => {
             somHover.currentTime = 0;
-            somHover.play();
+            somHover.play().catch(() => {}); 
         });
 
-        // Clique (novo conceito: a dashboard recua)
+        // Evento de clique (transição de entrada)
         card.addEventListener('click', () => {
-            // 1. Ativar o overlay escuro
             const overlay = document.getElementById('overlay-transicao');
             if (overlay) overlay.classList.add('ativa');
 
-            // 2. Aplicar a classe que faz a DASHBOARD INTEIRA encolher e sumir
             container.classList.add('dashboard-recua');
 
-            // 3. Mostrar o botão voltar no header
             const btnVoltarHeader = document.getElementById('btn-voltar-header');
             if (btnVoltarHeader) {
                 btnVoltarHeader.style.display = 'block';
@@ -41,14 +38,13 @@ export function renderizarDashboard() {
                 });
             }
 
-            // 4. Após 2 segundos (tempo da animação), esconder dashboard e mostrar livro
             setTimeout(() => {
                 document.getElementById('dashboard').style.display = 'none';
                 document.getElementById('livro').style.display = 'block';
                 if (overlay) overlay.classList.remove('ativa');
 
                 renderizarLivro(materia.id);
-            }, 500);
+            }, 300);
         });
 
         container.appendChild(card);

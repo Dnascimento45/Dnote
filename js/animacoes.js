@@ -2,42 +2,50 @@ export function voltarDashboard(idMateria) {
     const dashboard = document.getElementById('dashboard');
     const livro = document.getElementById('livro');
     const btnVoltarHeader = document.getElementById('btn-voltar-header');
+    const overlay = document.getElementById('overlay-transicao');
 
     if (dashboard && livro) {
-        // 1. Esconde o livro
+        // 1. Esconder o livro
         livro.style.display = 'none';
 
-        // 2. Mostra o dashboard, mas já o coloca no estado "pequeno e invisível"
+        // 2. Mostrar o dashboard
         dashboard.style.display = 'grid';
+
+        // 3. Remover a classe que bloqueia cliques
+        dashboard.classList.remove('dashboard-recua');
+
+        // 4. Desligar a transição para aplicar o estado inicial sem animação
+        dashboard.style.transition = 'none';
+
+        // 5. Aplicar o estado inicial (pequeno e invisível)
         dashboard.style.transform = 'scale(0.7)';
         dashboard.style.opacity = '0';
 
-         // 3. REMOVER A CLASSE QUE BLOQUEIA OS CLIQUES (aqui está o problema!)
-         dashboard.classList.remove('dashboard-recua');
+        // 6. Forçar o navegador a processar o estado pequeno
+        void dashboard.offsetHeight;
 
-         // 3. Aplicar o estado inicial (pequeno e invisível) para a animação
-         dashboard.style.transform = 'scale(0.7)';
-         dashboard.style.opacity = '0';
+        // 7. Religar a transição
+        dashboard.style.transition = '';
 
-        // 4. O TRUQUE DO REFLOW: Força o navegador a "pintar" esse estado pequeno/invisível
-        void dashboard.offsetHeight; 
-
-        // 5. Agora sim, anima para o estado normal (zoom in + fade in)
+        // 8. Animar para o estado final (zoom in)
         dashboard.style.transform = 'scale(1)';
         dashboard.style.opacity = '1';
 
-        // 6. Esconde o botão voltar
+        // 9. Esconder o botão voltar
         if (btnVoltarHeader) {
             btnVoltarHeader.style.display = 'none';
+        }
 
-             // 7. Garantir que o overlay não esteja bloqueando cliques
+        // 10. Garantir que o overlay não bloqueie cliques
         if (overlay) {
             overlay.classList.remove('ativa');
         }
 
-        // 8. Esconder o botão voltar
-        if (btnVoltarHeader) {
-            btnVoltarHeader.style.display = 'none';}
-        }
+        // 11. **NOVO:** Limpar os estilos inline após a animação (500ms)
+        setTimeout(() => {
+            dashboard.style.transform = '';
+            dashboard.style.opacity = '';
+            dashboard.style.transition = '';
+        }, 500);
     }
 }

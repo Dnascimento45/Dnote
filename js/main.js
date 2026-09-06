@@ -1,3 +1,5 @@
+
+console.log("TESTE: main.js carregou!");
 import { renderizarDashboard } from './modules/dashboard.js';
 
 console.log('🔥 main.js iniciado');
