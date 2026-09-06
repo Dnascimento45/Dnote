@@ -12,16 +12,32 @@ export function voltarDashboard(idMateria) {
         dashboard.style.transform = 'scale(0.7)';
         dashboard.style.opacity = '0';
 
-        // 3. O TRUQUE DO REFLOW: Força o navegador a "pintar" esse estado pequeno/invisível
+         // 3. REMOVER A CLASSE QUE BLOQUEIA OS CLIQUES (aqui está o problema!)
+         dashboard.classList.remove('dashboard-recua');
+
+         // 3. Aplicar o estado inicial (pequeno e invisível) para a animação
+         dashboard.style.transform = 'scale(0.7)';
+         dashboard.style.opacity = '0';
+
+        // 4. O TRUQUE DO REFLOW: Força o navegador a "pintar" esse estado pequeno/invisível
         void dashboard.offsetHeight; 
 
-        // 4. Agora sim, anima para o estado normal (zoom in + fade in)
+        // 5. Agora sim, anima para o estado normal (zoom in + fade in)
         dashboard.style.transform = 'scale(1)';
         dashboard.style.opacity = '1';
 
-        // 5. Esconde o botão voltar
+        // 6. Esconde o botão voltar
         if (btnVoltarHeader) {
             btnVoltarHeader.style.display = 'none';
+
+             // 7. Garantir que o overlay não esteja bloqueando cliques
+        if (overlay) {
+            overlay.classList.remove('ativa');
+        }
+
+        // 8. Esconder o botão voltar
+        if (btnVoltarHeader) {
+            btnVoltarHeader.style.display = 'none';}
         }
     }
 }
