@@ -16,7 +16,7 @@ export function renderizarLivro(idMateria) {
             `).join('')}
         </div>
 
-         <!-- Container do vídeo (novo) -->
+       
     <div class="video-container">
         <video autoplay loop muted playsinline>
             <source src="assets/video_bg.mp4" type="video/mp4">

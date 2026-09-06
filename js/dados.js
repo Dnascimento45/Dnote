@@ -33,7 +33,7 @@ export const materias = [
         conteudos: [
             'Gramática e Morfologia',
             'Sintaxe',
-            'Semântica e Interpretação de Texto',
+            'Semântica',
             'Ortografia e Acentuação'
         ]
     },
