@@ -1,0 +1,19 @@
+ID;Tarefa;Status;Observações
+1;Dashboard (Tela 1);✅ Pronto;Grid 2x2, capas em SVG, hover fluido, som de hover, logo centralizada.
+2;Transição de Ida (Tela 1 → 2);✅ Pronto;Efeito "zoom out" da dashboard inteira.
+3;Transição de Volta (Tela 2 → 1);✅ Pronto;Zoom in + fade, com limpeza de estilos inline para repetição.
+4;Tela de Conteúdos (Tela 2);✅ Pronto;Grid de conteúdos, vídeo em loop no canto.
+5;Estrutura de Dados (Capítulos aninhados);✅ Pronto;dados.js atualizado com conteudos contendo id, nome e capitulos: [].
+6;Integração Navegação (Livro → Caderno);✅ Pronto;livro.js atualizado para chamar renderizarCaderno.
+7;Header Global (Botão Voltar + Ferramentas);⬜ Pendente;Index.html ainda não atualizado! Reordenar elementos (Botão -> Logo -> Ferramentas) e corrigir stroke-width="w" para "2".
+8;Layout do Caderno (Tela 3);⬜ Em andamento;HTML base criado, mas CSS precisa garantir flex: 1 no caderno-body para preencher a tela.
+9;Lógica do Caderno (caderno.js);⬜ Em andamento;Função renderizarCaderno criada, mas precisa integrar os eventos do header (mostrar ferramentas, esconder logo, mudar botão voltar).
+10;Ferramentas do Header (Mostrar/Ocultar);⬜ Pendente;Adicionar classe modo-caderno no body para controlar visibilidade das ferramentas e cor do botão voltar (não ficar vermelho).
+11;Canvas "Infinito" (Pan & Zoom);⬜ Nova;Implementar sistema de deslocamento (pan) que permita arrastar o canvas para qualquer direção, com "infinito" visual. Usar transform ou manipulação de coordenadas no ctx.
+12;Botão "Voltar ao Início" / "Viajar para Seção";⬜ Nova;Criar um botão (possivelmente na sidebar ou header) que reseta a posição do canvas para o início (0,0) ou salta diretamente para uma seção específica do capítulo.
+13;Criação Dinâmica de Seções;⬜ Nova;Dentro de cada capítulo, permitir ao usuário criar "seções" (subdivisões). Isso exigirá uma nova estrutura de dados (ex: secoes: [] dentro de cada capítulo) e uma interface na sidebar para gerenciá-las (adicionar, renomear, excluir).
+14;Desenho e Escrita (Ferramentas);⬜ Pendente;Implementar efetivamente as ferramentas de desenho (lápis), texto (escrever no canvas), e borracha inteligente (apagar traço sob cursor).
+15;Salvar e Colar Imagens;⬜ Pendente;Salvar o conteúdo do canvas (e/ou texto) no localStorage ou outro meio; suportar paste de imagens no canvas.
+16;Responsividade (PC);⬜ Pendente;Focar em PC por enquanto, mas garantir que o layout não quebre em resoluções comuns.
+17;Geração de SVGs (Português/Inglês);✅ Pronto;Já criados manualmente (conforme solicitado).
+18;Vídeo da Página 2 para SVG em Loop;⬜ Pendente;Nova tarefa: Substituir o vídeo do video-container por um SVG animado (já temos o arquivo SVG). Fazer ele girar continuamente em loop usando CSS keyframes ou animações internas do SVG.

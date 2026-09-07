@@ -5,6 +5,41 @@ export function renderizarCaderno(idMateria, idConteudo, nomeConteudo) {
     const livro = document.getElementById('livro');
     const dashboard = document.getElementById('dashboard');
 
+    // 1. Adicionar classe ao body para ativar estilos
+    document.body.classList.add('modo-caderno');
+
+    // 2. Mostrar o botão voltar
+    const btnVoltar = document.getElementById('btn-voltar-header');
+    btnVoltar.style.display = 'block';
+
+    // 3. Alterar o evento de clique do botão voltar para voltar à Página 2
+    btnVoltar.onclick = () => {
+        voltarParaPagina2();
+    };
+
+    // 4. Esconder a logo (opcional, se não quiser)
+    // document.querySelector('.site-logo').style.display = 'none';
+
+    // ... resto do código do canvas e capítulos ...
+}
+
+// Função para voltar à Página 2
+function voltarParaPagina2() {
+    // Esconder caderno
+    document.getElementById('caderno').style.display = 'none';
+    
+    // Mostrar livro
+    document.getElementById('livro').style.display = 'block';
+
+    // Remover classe do body
+    document.body.classList.remove('modo-caderno');
+
+    // Esconder botão voltar (ou deixar para a página 2)
+    const btnVoltar = document.getElementById('btn-voltar-header');
+    btnVoltar.style.display = 'none'; // Ou mantenha visível se quiser
+
+
+    
     // 1. Esconder telas anteriores e mostrar o caderno
     livro.style.display = 'none';
     dashboard.style.display = 'none';

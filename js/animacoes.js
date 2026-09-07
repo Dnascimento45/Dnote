@@ -41,6 +41,8 @@ export function voltarDashboard(idMateria) {
             overlay.classList.remove('ativa');
         }
 
+        document.body.classList.remove('modo-caderno');
+
         // 11. **NOVO:** Limpar os estilos inline após a animação (500ms)
         setTimeout(() => {
             dashboard.style.transform = '';

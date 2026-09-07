@@ -311,3 +311,38 @@ html, body {
     height: 100%;
     cursor: crosshair; /* cursor de desenho */
 }
+/* Ferramentas do caderno - container */
+.caderno-tools {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Cada botão de ferramenta */
+.tool-btn {
+    background: transparent;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1.2rem;
+}
+
+.tool-btn:hover {
+    background: #222;
+}
+
+/* Quando o modo caderno está ativo no body */
+body.modo-caderno #ferramentas-caderno {
+    display: flex !important;
+}
+
+body.modo-caderno .site-logo {
+    display: none; /* Esconde a logo quando no caderno, para dar espaço */
+}
+
+/* Botão de voltar: NÃO fica vermelho no modo caderno */
+body.modo-caderno .btn-voltar:hover {
+    color: #fff; /* Mantém branco no hover */
+}
