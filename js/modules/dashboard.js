@@ -2,7 +2,6 @@ import { materias } from '../dados.js';
 import { renderizarLivro } from './livro.js';
 import { voltarDashboard } from '../animacoes.js';
 
-// Áudio de hover
 const somHover = new Audio('assets/hover.mp3');
 
 export function renderizarDashboard() {
@@ -17,13 +16,11 @@ export function renderizarDashboard() {
         card.style.backgroundImage = `url(${materia.imagem})`;
         card.dataset.id = materia.id;
 
-        // Correção do erro de áudio (evita quebrar a interação)
         card.addEventListener('mouseenter', () => {
             somHover.currentTime = 0;
-            somHover.play().catch(() => {}); 
+            somHover.play().catch(() => {});
         });
 
-        // Evento de clique (transição de entrada)
         card.addEventListener('click', () => {
             const overlay = document.getElementById('overlay-transicao');
             if (overlay) overlay.classList.add('ativa');
@@ -34,7 +31,7 @@ export function renderizarDashboard() {
             if (btnVoltarHeader) {
                 btnVoltarHeader.style.display = 'block';
                 btnVoltarHeader.addEventListener('click', () => {
-                    voltarDashboard(materia.id);
+                    voltarDashboard();
                 });
             }
 

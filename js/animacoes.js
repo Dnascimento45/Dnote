@@ -1,49 +1,39 @@
-export function voltarDashboard(idMateria) {
+export function voltarDashboard() {
     const dashboard = document.getElementById('dashboard');
     const livro = document.getElementById('livro');
     const btnVoltarHeader = document.getElementById('btn-voltar-header');
+    const btnVoltarCaderno = document.getElementById('btn-voltar-caderno');
     const overlay = document.getElementById('overlay-transicao');
 
+    // Esconder ambos os botões de voltar
+    if (btnVoltarHeader) btnVoltarHeader.style.display = 'none';
+    if (btnVoltarCaderno) btnVoltarCaderno.style.display = 'none';
+
     if (dashboard && livro) {
-        // 1. Esconder o livro
         livro.style.display = 'none';
-
-        // 2. Mostrar o dashboard
         dashboard.style.display = 'grid';
-
-        // 3. Remover a classe que bloqueia cliques
         dashboard.classList.remove('dashboard-recua');
 
-        // 4. Desligar a transição para aplicar o estado inicial sem animação
+        // Aplicar estado inicial (pequeno e invisível)
         dashboard.style.transition = 'none';
-
-        // 5. Aplicar o estado inicial (pequeno e invisível)
         dashboard.style.transform = 'scale(0.7)';
         dashboard.style.opacity = '0';
 
-        // 6. Forçar o navegador a processar o estado pequeno
+        // Forçar reflow
         void dashboard.offsetHeight;
 
-        // 7. Religar a transição
+        // Religar transição e animar
         dashboard.style.transition = '';
-
-        // 8. Animar para o estado final (zoom in)
         dashboard.style.transform = 'scale(1)';
         dashboard.style.opacity = '1';
 
-        // 9. Esconder o botão voltar
-        if (btnVoltarHeader) {
-            btnVoltarHeader.style.display = 'none';
-        }
+        // Limpar overlay
+        if (overlay) overlay.classList.remove('ativa');
 
-        // 10. Garantir que o overlay não bloqueie cliques
-        if (overlay) {
-            overlay.classList.remove('ativa');
-        }
-
+        // Remover estado de caderno
         document.body.classList.remove('modo-caderno');
 
-        // 11. **NOVO:** Limpar os estilos inline após a animação (500ms)
+        // Limpar estilos inline após a animação
         setTimeout(() => {
             dashboard.style.transform = '';
             dashboard.style.opacity = '';

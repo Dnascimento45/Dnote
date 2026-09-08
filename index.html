@@ -5,26 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dnote</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
    
     <header>
-        <!-- Botão voltar (sempre na esquerda) -->
+        <!-- Botão voltar da Tela 2 (Página de conteúdos) -->
         <button id="btn-voltar-header" class="btn-voltar" style="display: none;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </button>
     
-        <!-- Logo (centro) -->
+        <!-- Botão voltar da Tela 3 (Caderno) - NOVO -->
+        <button id="btn-voltar-caderno" class="btn-voltar-caderno" style="display: none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        
+        <!-- Logo (aparece na dashboard e página 2) -->
         <img src="assets/kanji.svg" alt="Aprendizado" class="site-logo">
     
-        <!-- Ferramentas do caderno (direita) -->
+        <!-- Ferramentas do caderno -->
         <div id="ferramentas-caderno" class="caderno-tools" style="display: none;">
-            <button class="tool-btn" data-tool="desenhar">✏️</button>
-            <button class="tool-btn" data-tool="apagar">🧽</button>
-            <button class="tool-btn" data-tool="texto">🔤</button>
-            <button class="tool-btn" data-tool="salvar">💾</button>
+            <button class="tool-btn" data-tool="desenhar"><i data-lucide="pencil"></i></button>
+            <button class="tool-btn" data-tool="texto"><i data-lucide="type"></i></button>
+            <button class="tool-btn" data-tool="apagar"><i data-lucide="eraser"></i></button>
+            <button class="tool-btn" data-tool="salvar"><i data-lucide="save"></i></button>
         </div>
     </header>
    <div id="overlay-transicao" class="overlay-transicao"></div>

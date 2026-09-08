@@ -54,23 +54,20 @@ html, body {
      padding: 2rem; }
 
 
-/* Botão voltar mais discreto, sem borda */
-.btn-voltar { 
-    
-    position: absolute;
-    left: 1.5rem;
-    top: 65%;
-    background: transparent;
-    border: none;
-    color: #fff; /* A seta fica branca */
-    cursor: pointer;
-    padding: 0.5rem;
-    
-    /* Adiciona uma transição suave para o efeito de hover */
-    transition: transform 0.15s ease, text-shadow 0.3s ease, filter 0.3s ease;
-    
-   
-     }
+     .btn-voltar {
+        position: absolute;
+        left: 1.5rem;
+      
+        transform: translateY(55%);
+        background: transparent;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        padding: 0.5rem;
+        transition: transform 0.15s ease, color 0.15s ease;}
+
+
+
 
 .btn-voltar:hover {    /* Desloca a seta um pouco para a esquerda, como se estivesse "voltando" */
     transform:  translateX(-5px);
@@ -78,6 +75,23 @@ html, body {
    color: #6d0707;
 
 }
+
+.btn-voltar-caderno {
+    position: absolute;
+    left: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.15s ease, color 0.15s ease;}
+
+    body.modo-caderno .site-logo {
+        display: none;
+    }
+
 
 
  
@@ -88,8 +102,7 @@ html, body {
     padding: 1rem 2rem;
     background-color: #000;
     position: relative;
-    
-    }
+      }
 
     .site-logo {
         position: absolute;
@@ -222,29 +235,12 @@ html, body {
     /* Já temos o padding base, mas vamos ajustar */
 }
 
-.caderno-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    border-bottom: 1px solid #222;
-}
-
-.caderno-header h1 {
-    font-size: 1.5rem;
-}
-
-.btn-toggle {
-    background: transparent;
-    border: 1px solid #555;
-    color: #fff;
-    padding: 0.3rem 0.8rem;
-    cursor: pointer;
-}
 
 .caderno-body {
     display: flex;
-    height: calc(100% - 60px); /* Header ocupa 60px aproximadamente */
+    flex: 1;
+   
+    overflow: hidden;
 }
 
 .sidebar {
@@ -320,17 +316,25 @@ html, body {
 
 /* Cada botão de ferramenta */
 .tool-btn {
-    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px; /* Ajuste conforme necessário */
     border: 1px solid #444;
+    background: transparent;
     color: #fff;
-    padding: 8px;
     cursor: pointer;
     border-radius: 4px;
-    font-size: 1.2rem;
 }
 
 .tool-btn:hover {
     background: #222;
+}
+
+.tool-btn svg {
+    width: 18px;   /* Largura do ícone */
+    height: 18px;  /* Altura do ícone */
+    stroke-width: 2; /* Espessura do traço (opcional, padrão é 2) */
 }
 
 /* Quando o modo caderno está ativo no body */
@@ -345,4 +349,28 @@ body.modo-caderno .site-logo {
 /* Botão de voltar: NÃO fica vermelho no modo caderno */
 body.modo-caderno .btn-voltar:hover {
     color: #fff; /* Mantém branco no hover */
+}
+
+/* ===== MODO CADERNO (Tela 3) ===== */
+
+/* 1. Esconder a logo (você já tem isso, mas vou confirmar) */
+body.modo-caderno .site-logo {
+    display: none;
+}
+
+/* 2. Adicionar a linha divisória abaixo do header (apenas no modo caderno) */
+body.modo-caderno header {
+    border-bottom: 1px solid #333; /* Linha sutil para dividir do canvas */
+    /* Se o header já tiver uma borda, você pode trocar ou remover */
+}
+
+/* (Opcional) Ajustar o espaçamento das ferramentas no header para ficarem alinhadas */
+body.modo-caderno .caderno-tools {
+    display: flex;
+    gap: 10px;
+}
+
+/* Ferramentas do caderno - alinhadas à direita */
+body.modo-caderno #ferramentas-caderno {
+    margin-left: auto; /* Empurra as ferramentas para a direita */
 }
