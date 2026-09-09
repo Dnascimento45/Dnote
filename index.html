@@ -50,12 +50,14 @@
                     <h2>CAPÍTULOS</h2>
                     <ul id="lista-capitulos"></ul>
                     <div class="sidebar-actions">
-                        <button id="btn-add-capitulo" class="btn-sidebar">+ Capítulo</button>
+                        <button id="btn-add-capitulo" class="btn-sidebar">Adicionar capítulo</button>
                         <button id="btn-rename-capitulo" class="btn-sidebar">Renomear</button>
                         <button id="btn-delete-capitulo" class="btn-sidebar">Excluir capítulo</button>
                     </div>
                 </aside>
         
+                <div class="caderno-body">
+
                 <!-- Área de desenho -->
                 <div class="canvas-area">
                     <canvas id="canvas-desenho"></canvas>
@@ -69,8 +71,20 @@
         <section id="dashboard" class="dashboard-capas"></section>
         
         <!-- Estrutura da tela do Livro (vamos adicionar depois, mas já deixa o lugar) -->
-        <section id="livro" class="view-conteudo" style="display: none;"></section>
+        <section id="livro" class="view-conteudo" ></section>
     </div>
+
+    <!-- Modal para criar/renomear/excluir capítulos -->
+<div id="modal-overlay" class="modal-overlay" >
+    <div class="modal-box">
+        <h3 id="modal-titulo">Novo Capítulo</h3>
+        <input type="text" id="modal-input" placeholder="Digite o nome..." />
+        <div class="modal-actions">
+            <button id="modal-cancelar" class="btn-modal">Cancelar</button>
+            <button id="modal-confirmar" class="btn-modal">Criar</button>
+        </div>
+    </div>
+</div>
 
     <!-- Corrigido: importando o módulo -->
     <script type="module" src="js/main.js"></script>

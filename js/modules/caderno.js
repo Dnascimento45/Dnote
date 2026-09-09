@@ -7,8 +7,12 @@ function voltarParaPagina2() {
 
     document.body.classList.remove('modo-caderno');
 
-    const btnVoltar = document.getElementById('btn-voltar-header');
-    btnVoltar.style.display = 'none';
+    // Mostrar botão da tela 2 e esconder botão do caderno
+    const btnVoltarHeader = document.getElementById('btn-voltar-header');
+    const btnVoltarCaderno = document.getElementById('btn-voltar-caderno');
+
+    if (btnVoltarHeader) btnVoltarHeader.style.display = 'block';
+    if (btnVoltarCaderno) btnVoltarCaderno.style.display = 'none';
 }
 
 export function renderizarCaderno(idMateria, idConteudo, nomeConteudo) {
@@ -23,17 +27,16 @@ export function renderizarCaderno(idMateria, idConteudo, nomeConteudo) {
 
     document.body.classList.add('modo-caderno');
 
-   // Esconder o botão da tela 2 e mostrar o da tela 3
-const btnVoltarHeader = document.getElementById('btn-voltar-header');
-const btnVoltarCaderno = document.getElementById('btn-voltar-caderno');
+    // Esconder o botão da tela 2 e mostrar o da tela 3
+    const btnVoltarHeader = document.getElementById('btn-voltar-header');
+    const btnVoltarCaderno = document.getElementById('btn-voltar-caderno');
 
-if (btnVoltarHeader) btnVoltarHeader.style.display = 'none';
-if (btnVoltarCaderno) btnVoltarCaderno.style.display = 'block';
+    if (btnVoltarHeader) btnVoltarHeader.style.display = 'none';
+    if (btnVoltarCaderno) btnVoltarCaderno.style.display = 'block';
 
-// Configurar ação de voltar para a tela 2 (livro)
-btnVoltarCaderno.onclick = () => {
-    voltarParaPagina2();
-};
+    btnVoltarCaderno.onclick = () => {
+        voltarParaPagina2();
+    };
 
     document.getElementById('caderno-titulo').textContent = nomeConteudo || 'Novo Conteúdo';
 
@@ -43,6 +46,52 @@ btnVoltarCaderno.onclick = () => {
     let capituloAtivo = null;
 
     const listaCapitulos = document.getElementById('lista-capitulos');
+
+    // ==========================================
+    // FUNÇÃO DO MODAL (NOVA)
+    // ==========================================
+    function abrirModal(titulo, placeholder, textoBotao, callback) {
+        const overlay = document.getElementById('modal-overlay');
+        const tituloEl = document.getElementById('modal-titulo');
+        const inputEl = document.getElementById('modal-input');
+        const confirmarBtn = document.getElementById('modal-confirmar');
+        const cancelarBtn = document.getElementById('modal-cancelar');
+    
+        // Configurar o conteúdo
+        tituloEl.textContent = titulo;
+        inputEl.placeholder = placeholder;
+        confirmarBtn.textContent = textoBotao;
+    
+        // Limpar o input
+        inputEl.value = '';
+        inputEl.focus();
+    
+        // Mostrar o modal (adiciona a classe que ativa a visibilidade)
+        overlay.classList.add('ativo');
+    
+        // Função para fechar o modal
+        function fechar() {
+            overlay.classList.remove('ativo');
+            confirmarBtn.onclick = null;
+            cancelarBtn.onclick = null;
+        }
+    
+        // Quando clicar em "Confirmar"
+        confirmarBtn.onclick = () => {
+            const valor = inputEl.value.trim();
+            if (valor) {
+                callback(valor); // Executa a ação (criar, renomear, etc)
+                fechar();
+            }
+        };
+    
+        // Quando clicar em "Cancelar"
+        cancelarBtn.onclick = fechar;
+    }
+
+    // ==========================================
+    // LÓGICA DE CAPÍTULOS (USANDO O MODAL)
+    // ==========================================
 
     function renderizarLista() {
         listaCapitulos.innerHTML = '';
@@ -57,43 +106,62 @@ btnVoltarCaderno.onclick = () => {
                 limparCanvas();
             });
             listaCapitulos.appendChild(li);
-        });
-    }
+        }) };
+   
 
-    document.getElementById('btn-add-capitulo').addEventListener('click', () => {
-        const nome = prompt('Nome do novo capítulo:');
-        if (nome) {
-            capitulos.push(nome);
-            capituloAtivo = capitulos.length - 1;
-            renderizarLista();
-            limparCanvas();
+    // Botão "Adicionar Capítulo"
+   
+        document.getElementById('btn-add-capitulo').onclick = () => {
+            abrirModal(
+                'Novo Capítulo',
+                'Digite o nome do capítulo...',
+                'Criar',
+                (novoNome) => {
+                    capitulos.push(novoNome);
+                    capituloAtivo = capitulos.length - 1; // Índice do último capítulo
+                    renderizarLista();
+                    limparCanvas();
+                }
+            );
+        };
+
+    // Botão "Renomear Capítulo"
+    document.getElementById('btn-rename-capitulo').onclick = () => {
+        if (capituloAtivo === null) {
+            abrirModal('Atenção', 'Selecione um capítulo para renomear.', 'Entendi', () => {});
+            return;
         }
-    });
-
-    document.getElementById('btn-rename-capitulo').addEventListener('click', () => {
-        if (capituloAtivo !== null) {
-            const novoNome = prompt('Novo nome do capítulo:', capitulos[capituloAtivo]);
-            if (novoNome) {
+        
+        abrirModal(
+            'Renomear Capítulo',
+            'Novo nome do capítulo...',
+            'Salvar',
+            (novoNome) => {
                 capitulos[capituloAtivo] = novoNome;
                 renderizarLista();
             }
-        } else {
-            alert('Selecione um capítulo primeiro.');
+        );
+    };
+    // Botão "Excluir Capítulo"
+    document.getElementById('btn-delete-capitulo').onclick = () => {
+        if (capituloAtivo === null) {
+            abrirModal('Atenção', 'Selecione um capítulo para excluir.', 'Entendi', () => {});
+            return;
         }
-    });
-
-    document.getElementById('btn-delete-capitulo').addEventListener('click', () => {
-        if (capituloAtivo !== null) {
-            if (confirm(`Excluir o capítulo "${capitulos[capituloAtivo]}"?`)) {
+        
+        // Para excluir, usamos o modal de confirmação
+        abrirModal(
+            'Excluir Capítulo',
+            `Tem certeza que deseja excluir "${capitulos[capituloAtivo]}"?`,
+            'Excluir',
+            () => {
                 capitulos.splice(capituloAtivo, 1);
                 capituloAtivo = null;
                 renderizarLista();
                 limparCanvas();
             }
-        } else {
-            alert('Selecione um capítulo primeiro.');
-        }
-    });
+        );
+    };
 
     const sidebar = document.getElementById('sidebar-caderno');
     sidebar.querySelector('h2').addEventListener('click', () => {
@@ -109,10 +177,7 @@ btnVoltarCaderno.onclick = () => {
 
     function posicao(e) {
         const rect = canvas.getBoundingClientRect();
-        return {
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top
-        };
+        return { x: e.clientX - rect.left, y: e.clientY - rect.top };
     }
 
     function limparCanvas() {
